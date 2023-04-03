@@ -5,10 +5,9 @@ const UserController = {
         req.body.role = "user";
         User.create(req.body)
             .then(user => res.status(201).send({ message: 'Usuario creado con éxito', user }))
-            .catch(console.error)
+            .catch((error) => console.error(error));
 
     },
-
 }
 
 module.exports = UserController;
