@@ -4,7 +4,6 @@ const CategoryController = {
         Category.create(req.body)
             .then(category => res.status(201).send({ message: 'Categoria creada con éxito', category }))
             .catch((error) => console.error(error));
-
     },
 
     updateCategory(req, res) {
@@ -40,9 +39,7 @@ const CategoryController = {
     
       getAll(req, res) {
         Category.findAll()
-          .then((category) =>
-            res.send({ msg: "Categorias mostradas con exito", category })
-          )
+          .then((category) => res.send({ msg: "Categorias mostradas con exito", category }))
           .catch((error) => console.error(error));
       },
 }

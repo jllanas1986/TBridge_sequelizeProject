@@ -3,12 +3,15 @@ const product = require("../models/product.js");
 //const product = require('../models/product.js');
 const { Op } = Sequelize;
 const ProductController = {
-  create(req, res) {
+  create(req, res, next) {
     Product.create(req.body)
       .then((product) =>
         res.status(201).send({ message: "Producto creado con éxito", product })
       )
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        next(error);
+      });
   },
 
   update(req, res) {
@@ -84,22 +87,11 @@ const ProductController = {
 
   getOrderPrice(req, res) {
     Product.findAll({
-      order: [[ 'price', 'DESC' ]],
+      order: [["price", "DESC"]],
     })
       .then((product) => res.send(product))
       .catch((error) => console.error(error));
   },
-
-  
-
-
-
-
 };
-
-
-
-
-
 
 module.exports = ProductController;
