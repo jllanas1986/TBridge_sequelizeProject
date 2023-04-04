@@ -3,5 +3,5 @@ const UserController = require('../controllers/UserController');//autoimportaci√
 const router = express.Router();///Creamos el router
 
 router.post('/createUser', UserController.create);///ruta creada
-
+router.post('/login', UserController.login)
 module.exports = router;
