@@ -1,6 +1,9 @@
 ////importar el model/index a User////
-const { User } = require("../models/index.js");
+const { User, Token } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const { jwt_secret } = require('../config/config.json')['development']
+
 const UserController = {
   create(req, res, next) {
     req.body.role = "user";
@@ -14,7 +17,7 @@ const UserController = {
         next(error);
       });
   },
-  
+
   login(req, res) {
     User.findOne({
       where: {
@@ -35,7 +38,9 @@ const UserController = {
           .send({ message: "Usuario o contraseña incorrectos" });
       }
 
-      res.send(user);
+    const token = jwt.sign({ id: user.id }, jwt_secret);
+    Token.create({ token, UserId: user.id });
+    res.send({ token, message: 'Bienvenid@ ' + user.name, user });
     });
   },
 };
