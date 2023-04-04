@@ -42,6 +42,16 @@ const CategoryController = {
           .then((category) => res.send({ msg: "Categorias mostradas con exito", category }))
           .catch((error) => console.error(error));
       },
+    
+      getById(req, res) {
+        Category.findByPk(req.params.id)
+          .then(() =>
+            Category.findByPk(req.params.id).then((category) =>
+              res.send({ msg: "Categoria por su id mostrada con exito", category })
+            )
+          )
+          .catch((error) => console.error(error));
+      },
 }
 
 module.exports = CategoryController;

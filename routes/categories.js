@@ -7,5 +7,7 @@ router.post('/createCategory', CategoryController.create);///ruta creada
 router.put('/updateCategory/:id', CategoryController.updateCategory);
 router.delete('/delete/:id', CategoryController.delete )
 router.get('/showCategories', CategoryController.getAll)
+router.get('/showCategory/:id', CategoryController.getById)
+
 
 module.exports = router;
