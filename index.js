@@ -14,6 +14,8 @@ app.use('/products',require('./routes/products.js'))
 ///rutas categories///
 app.use('/categories', require('./routes/categories.js'))
 
+app.use('/orders', require('./routes/orders.js'))
+
 ///aplicacion del middleware///
 app.use(typeError)
 

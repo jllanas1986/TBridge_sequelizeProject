@@ -1,8 +1,9 @@
 ////importar el model/index a User////
-const { User, Token } = require("../models/index.js");
+const { User, Order, Product, Token, Sequelize } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development']
+const {Op} = Sequelize;
 
 const UserController = {
   create(req, res, next) {
@@ -43,6 +44,40 @@ const UserController = {
     res.send({ token, message: 'Bienvenid@ ' + user.name, user });
     });
   },
+
+  getInfoUser(req, res) {
+    User.findByPk(req.user.id, {
+        include: [
+        {
+            model: Order,
+            include: [{ model: Product }],
+        },
+        ],
+    })
+      .then((user) =>
+          res.send({ msg: "Informacion del usuario conectado mostrada con exito", user })
+        
+      )
+      .catch((error) => console.error(error));
+  },
+
+  logout(req, res) {
+    Token.destroy({
+        where: {
+            [Op.and]: [
+                { UserId: req.user.id },
+                { token: req.headers.authorization },
+            ],
+        },
+    })
+        .then(() => {
+            res.send({ message: "Desconectado con éxito" });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).send({ message: "hubo un problema al tratar de desconectarte" });
+        });
+    }
 };
 
 module.exports = UserController;
