@@ -1,5 +1,5 @@
 const { Order,Product } = require("../models/index.js");
-const product = require("../models/product.js");
+//const product = require("../models/product.js");
 
 
 const OrderController = {

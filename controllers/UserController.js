@@ -11,8 +11,7 @@ const UserController = {
     const password = bcrypt.hashSync(req.body.password, 10); ///encriptando clave de acceso
     User.create({ ...req.body, password: password })
       .then((user) =>
-        res.status(201).send({ message: "Usuario creado con éxito", user })
-      )
+        res.status(201).send({ message: "Usuario creado con éxito", user }))
       .catch((error) => {
         console.error(error);
         next(error);
@@ -55,9 +54,7 @@ const UserController = {
         ],
     })
       .then((user) =>
-          res.send({ msg: "Informacion del usuario conectado mostrada con exito", user })
-        
-      )
+          res.send({ msg: "Informacion del usuario conectado mostrada con exito", user }))
       .catch((error) => console.error(error));
   },
 

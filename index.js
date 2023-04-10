@@ -4,16 +4,17 @@ const PORT = 3000;
 app.use(express.json()) //parsea los datos del body, sino es undefined
 const { typeError } = require('./middlewares/errors'); //importacion middleware error
 
-///rutas users///
+///nombre ruta users///
 app.use('/users',require('./routes/users.js')) //esta linea anade users a la ruta del servidor//
 
 
-///rutas products///
+///nombre ruta products///
 app.use('/products',require('./routes/products.js'))
 
-///rutas categories///
+///nombre ruta categories///
 app.use('/categories', require('./routes/categories.js'))
 
+//nombre ruta orders///
 app.use('/orders', require('./routes/orders.js'))
 
 ///aplicacion del middleware///
