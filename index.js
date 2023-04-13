@@ -20,12 +20,6 @@ app.use('/orders', require('./routes/orders.js'))
 ///aplicacion del middleware///
 app.use(typeError)
 
-
-
-
-
-
-
 //////levantar el servidor/////
 app.listen(PORT, () => {
     console.log(`Servidor levantado en el puerto ${PORT}`);
