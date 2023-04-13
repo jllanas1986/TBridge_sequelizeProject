@@ -165,7 +165,7 @@ app.listen(PORT, () => {
     console.log(`Servidor levantado en el puerto ${PORT}`);
 })
 ```
-Cabe mencionar también el uso de middlewares para implementar simplifiación en los mensajes de error y dar así mas facilidades al usuario. También la aplicación de autenticación con JWT, además de la creación de un rol de administrador para disponer de permisos especiales.
+Cabe mencionar también el uso de middlewares para implementar simplificación en los mensajes de error y dar así mas facilidades de entendimiento al usuario. También la aplicación de autenticación con JWT, además de la creación de un rol de administrador para disponer de permisos especiales.
 
 ---
 ### Postman 🔩
