@@ -38,7 +38,7 @@ const CategoryController = {
           .catch((error) => console.error(error));
       },
     
-    getAll(req, res) {
+    getCategories(req, res) {
         Category.findAll()
           .then((category) => res.send({ msg: "Categorias mostradas con exito", category }))
           .catch((error) => console.error(error));

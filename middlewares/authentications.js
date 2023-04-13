@@ -30,4 +30,17 @@ const authentication = async (req, res, next) => {
   }
 };
 
-module.exports = { authentication };
+const isAdmin = async(req, res, next) => {
+  const admins = ['admin','superadmin']; //lista de roles
+  //vemos si el user tiene el rol correcto
+  if (!admins.includes(req.user.role)) {
+    return res.status(403).send({
+      message: 'No tienes permisos'
+    });
+  }
+  //si no tiene ninguno de los roles dentro de la lista, le dejamos ejecutar
+  next();
+  
+}
+
+module.exports = { authentication, isAdmin };
