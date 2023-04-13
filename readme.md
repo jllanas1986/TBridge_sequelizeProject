@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
   return Product;
 };
 ```
-### Controladores y metodos 🔩
+### Controladores y métodos 🔩
 
 Una vez constituidas las tablas, desarrollamos los metodos para realizar los CRUDs rqueridos en los archivos de controlador. En el siguente código vemos como quedan implementadas las importaciones y el primer metodo creado en el archivo controlador de las categorías.
 
