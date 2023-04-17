@@ -2,14 +2,20 @@
 const { User, Order, Product, Token, Sequelize } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
+const { DataTypes } = require("sequelize");
 const { jwt_secret } = require('../config/config.json')['development']
 const {Op} = Sequelize;
 
 const UserController = {
   create(req, res, next) {
     req.body.role = "user";
-    const password = bcrypt.hashSync(req.body.password, 10); ///encriptando clave de acceso
-    User.create({ ...req.body, password: password })
+    const password = req.body.password;
+    let hashedPassword;
+    if(password) {
+      hashedPassword = bcrypt.hashSync(password, 10) ///encriptando clave de acceso
+    };
+    
+    User.create({ ...req.body, password: hashedPassword })
       .then((user) =>
         res.status(201).send({ message: "Usuario creado con éxito", user }))
       .catch((error) => {
