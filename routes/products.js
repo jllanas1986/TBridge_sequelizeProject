@@ -4,7 +4,7 @@ const { authentication, isAdmin } = require('../middlewares/authentications');
 const router = express.Router();///Creamos el router
 
 router.post('/createProduct',authentication, isAdmin, ProductController.create);
-router.put('/updateProduct/:id',authentication, isAdmin, ProductController.update);
+router.put('/updateProduct/:id',authentication, ProductController.update);
 router.delete('/deleteproduct/:id',authentication, isAdmin, ProductController.delete);
 router.get('/showProducts', ProductController.getAll);
 router.get('/showProduct/:id', ProductController.getById);

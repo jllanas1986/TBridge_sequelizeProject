@@ -26,6 +26,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    image: { 
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Por favor, introduce la imagen",
+        },
+      },
+    },
     price: {
       type: DataTypes.FLOAT,
       allowNull: false,
